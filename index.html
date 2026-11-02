@@ -130,61 +130,39 @@ function extractResetDays(t){
 }
 $('runOCR').onclick=async()=>{
  if(!scanFile){$('ocrStatus').textContent='先に画像を選んでください';return}
- const status=$('ocrStatus');status.textContent='「あと○日でリセット」を優先して読み取っています…';$('runOCR').disabled=true;
+ const status=$('ocrStatus');$('runOCR').disabled=true;
+ status.textContent='ピンクのランク欄を優先して読み取っています…';
  try{
-  if(!window.Tesseract){await new Promise((resolve,reject)=>{let sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';sc.onload=resolve;sc.onerror=()=>reject(Error('OCRライブラリを読み込めませんでした。通信環境を確認してください'));document.head.append(sc)})}
-  const regions=await resetBand(scanFile);
-  const recognize=async(canvas,lang)=> (await Tesseract.recognize(canvas,lang)).data.text;
-  const readPoints=async()=>{try{const fullText=await recognize(regions.full,'eng');const m=fullText.replace(/\s/g,'').match(/(?:^|[^0-9])([0-9]{1,2})\/18(?:[^0-9]|$)/);if(m){state.earned=Number(m[1]);state.goal=18;state.mode='up';$('scanEarned').value=m[1];$('scanGoal').value='18';$('scanKeep').value=Math.max(0,12-state.earned);$('scanUp').value=Math.max(0,18-state.earned);save();update();}}catch(e){}};
-  let text=await recognize(regions.band,'jpn+eng');
-  let n=extractResetDays(text);
-  if(n===null){status.textContent='画像全体も確認しています…';text=await recognize(regions.full,'jpn+eng');n=extractResetDays(text)}
-  if(n===null){const t=await recognize(regions.band,'eng');n=extractResetDays(t);if(n===null){let m=t.replace(/\s/g,'').match(/([0-9]{1,2})/);if(m)n=Number(m[1])}}
-  if(n!==null&&n<=31){
-    $('scanDays').value=n;
-    state.today=iso(new Date());state.reset=add(state.today,n);save();update();
-    status.textContent='✓ 「あと'+n+'日」を読み取り、カレンダーを'+(n+1)+'日間に自動更新しました。ポイントも確認中…';await readPoints();recordScan();
-    // ランク情報が無い、日数のみの切り抜きでも自動反映する。
-    try{
-      const parts=await makeRegions(scanFile);
-      const crops=[parts.rank,await showRankCrop(scanFile)];
-      let found=null;
-      for(const canvas of crops){
-        for(const variant of [0,1]){
-          const test=document.createElement('canvas');test.width=canvas.width;test.height=canvas.height;
-          const tc=test.getContext('2d',{willReadFrequently:true});tc.drawImage(canvas,0,0);
-          if(variant===1){
-            const pixels=tc.getImageData(0,0,test.width,test.height);
-            for(let i=0;i<pixels.data.length;i+=4){
-              const r=pixels.data[i],g=pixels.data[i+1],b=pixels.data[i+2];
-              const white=r>175&&g>155&&b>150&&Math.max(r,g,b)-Math.min(r,g,b)<95;
-              const v=white?0:255;
-              pixels.data[i]=pixels.data[i+1]=pixels.data[i+2]=v;
-            }
-            tc.putImageData(pixels,0,0);
-          }
-          const raw=(await recognize(test,'eng')).toUpperCase().replace(/[|!]/g,'1').replace(/\s+/g,'').trim();
-          const match=raw.match(/(?:^|[^A-Z0-9])(SS|A[1-5]|B[1-3]|C[1-3]|S|D)(?=$|[^A-Z0-9])/)
-             ||raw.match(/^(SS|A[1-5]|B[1-3]|C[1-3]|S|D)$/);
-          if(match){found=match[1];break;}
-        }
-        if(found)break;
-      }
-      if(found&&ranks.includes(found)){
-        $('scanRank').value=found;state.rank=found;save();update();
-      }else{
-        status.textContent='残り日数とポイントを反映しました。現在ランクだけ認識できませんでした。画像の中央ランクを下の欄で選んでください。';
-        return;
-      }
-    }catch(_e){
-      status.textContent='残り日数は反映しましたが、ランク認識に失敗しました。ランクは手動で選択できます。';
-      return;
-    }
-    status.textContent='✓ ランク・残り日数の読み取りを反映しました。カレンダーは'+(n+1)+'日間です。';
-    return;
+  if(!window.Tesseract){await new Promise((resolve,reject)=>{const sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';sc.onload=resolve;sc.onerror=()=>reject(Error('OCRの読み込みに失敗しました'));document.head.append(sc)})}
+  const parts=await makeRegions(scanFile),reset=await resetBand(scanFile);
+  const recognize=async(canvas,lang='eng')=>(await Tesseract.recognize(canvas,lang)).data.text;
+  const clean=t=>String(t).toUpperCase().replace(/[|!]/g,'1').replace(/\s+/g,'').trim();
+  let rank=null,earned=null,remaining=null;
+  // 現在ランクはピンク帯の中央だけを見る。左右の前後ランクは使わない。
+  const rankCrops=[parts.rank,await showRankCrop(scanFile)];
+  for(const canvas of rankCrops){
+   for(const variant of [0,1]){
+    const test=document.createElement('canvas');test.width=canvas.width;test.height=canvas.height;
+    const c=test.getContext('2d',{willReadFrequently:true});c.drawImage(canvas,0,0);
+    if(variant){const img=c.getImageData(0,0,test.width,test.height);for(let i=0;i<img.data.length;i+=4){const r=img.data[i],g=img.data[i+1],b=img.data[i+2];const white=r>175&&g>155&&b>150&&Math.max(r,g,b)-Math.min(r,g,b)<95;img.data[i]=img.data[i+1]=img.data[i+2]=white?0:255}c.putImageData(img,0,0)}
+    const raw=clean(await recognize(test));
+    const m=raw.match(/^(SS|A[1-5]|B[1-3]|C[1-3]|S|D)$/)||raw.match(/(?:^|[^A-Z0-9])(SS|A[1-5]|B[1-3]|C[1-3]|S|D)(?=$|[^A-Z0-9])/);
+    if(m){rank=m[1];break}
+   }
+   if(rank)break;
   }
-  status.textContent='残り日数を認識できませんでした。下の「画像から確認した残り日数」に4などを入力して反映してください。';
- }catch(e){status.textContent='自動読み取りが使えません：'+(e.message||e)+'。下の残り日数を手入力できます。'}finally{$('runOCR').disabled=false}
+  if(rank){$('scanRank').value=rank;state.rank=rank}
+  status.textContent='ランク欄を確認しました。ポイントとリセット日数を読み取っています…';
+  // 獲得ポイントはランク直下の「4 / 18」だけを優先。
+  try{for(const canvas of [parts.points,parts.full]){const t=clean(await recognize(canvas));const m=t.match(/(?:^|[^0-9])([0-9]{1,2})\/18(?:[^0-9]|$)/);if(m&&Number(m[1])<=18){earned=Number(m[1]);break}}}catch(e){}
+  if(earned!==null){$('scanEarned').value=earned;$('scanGoal').value=18;$('scanKeep').value=Math.max(0,12-earned);$('scanUp').value=Math.max(0,18-earned);state.earned=earned;state.goal=18;state.mode='up'}
+  // 日数は専用のピンク帯を読む。数字だけを拾って誤反映しない。
+  try{for(const canvas of [parts.days,reset.band,reset.full]){const t=await recognize(canvas,'jpn+eng');const n=extractResetDays(t);if(n!==null&&n<=31){remaining=n;break}}}catch(e){}
+  if(remaining!==null){$('scanDays').value=remaining;state.today=iso(new Date());state.reset=add(state.today,remaining)}
+  if(rank||earned!==null||remaining!==null){save();update();recordScan()}
+  const items=[rank?'ランク '+rank:null,earned!==null?'獲得 +'+earned:null,remaining!==null?'リセットまで '+remaining+'日':null].filter(Boolean);
+  status.textContent=items.length?'✓ '+items.join(' ／ ')+' を反映しました。'+(rank&&earned!==null&&remaining!==null?'':'読み取れなかった項目は下の欄で確認してください。'):'読み取れませんでした。下の入力欄から手動で設定できます。';
+ }catch(e){status.textContent='読み取りエラー：'+(e.message||e)+'。下の欄で手動入力できます。'}finally{$('runOCR').disabled=false}
 };
 $('applyScan').onclick=()=>{
  if($('scanDays').value===''){$('ocrStatus').textContent='残り日数を入力してください';return}
