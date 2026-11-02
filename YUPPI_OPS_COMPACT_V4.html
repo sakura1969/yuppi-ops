@@ -1,0 +1,220 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>YUPPI OPS ♡</title><meta name="theme-color" content="#f58cbd"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="YUPPI OPS"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icon-180.png"><link rel="icon" type="image/png" href="./icon-192.png"><style>
+:root{font-family:system-ui,'Noto Sans JP',sans-serif;color:#252525;background:#faf9fa}*{box-sizing:border-box}body{margin:0}.app{max-width:620px;margin:auto;padding:14px 12px 50px}header{padding:15px 6px 9px}h1{font-size:24px;margin:0}small,.muted{color:#777}.heart{color:#d27da5}section{background:#fff;border:1px solid #e5e2e5;border-radius:22px;padding:16px;margin:10px 0}h2{font-size:19px;margin:0 0 12px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{min-width:0}label{font-size:12px;color:#686868;display:block;margin-bottom:5px}input,select,button{font:inherit}input,select{width:100%;min-width:0;border:1px solid #ddd;border-radius:13px;background:#fafafa;padding:11px;font-size:16px}button{border:1px solid #ddd;background:#f6f5f6;border-radius:13px;padding:10px 8px;cursor:pointer;color:#333}button.active{background:#292729;color:white;border-color:#292729}button:focus-visible{outline:3px solid #d27da5}.toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px}.toggle button{font-weight:700}.dates{display:flex;gap:5px;overflow-x:auto;padding:5px 0 9px;scrollbar-width:thin}.day{min-width:66px;flex:1;max-width:90px;min-height:83px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;border-radius:15px;background:#f3f3f3;border:1px solid #dedede;padding:9px 3px;font-weight:650}.day .tag{font-size:11px;color:#777}.day.selected{outline:3px solid #cf78a0;outline-offset:-2px}.day.skip{background:#f9dda9}.day.done{background:#dff4e8}.day.plan{background:#fae9f1}.options{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.options button{font-size:16px}.summary{display:grid;grid-template-columns:1fr 1fr;gap:9px}.metric{background:#f5f4f5;border-radius:17px;text-align:center;padding:13px 5px}.metric b{display:block;font-size:28px;margin-top:5px}.pink{background:#fcf0f5}.pink b{color:#c85d8e}.green b{color:#087d48}.wide{grid-column:1/-1}.note{font-size:12px;color:#6c6c6c;line-height:1.6}.progress{height:10px;background:#eee;border-radius:20px;overflow:hidden}.progress>div{height:100%;background:#e184ad;width:0}.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{flex:1}.preview{max-width:100%;max-height:260px;object-fit:contain;border-radius:12px;margin-top:8px}.hidden{display:none}.status{font-size:13px;color:#555;white-space:pre-wrap}footer{text-align:center;color:#888;font-size:11px;padding:10px}
+.scan-top{border-color:#edc7d9;background:#fffafd}.scan-top h2{margin-top:0}.scan-top input[type=file]{width:100%;max-width:100%}
+.floating-scan{position:fixed;right:14px;top:calc(env(safe-area-inset-top, 0px) + 12px);z-index:9999;border:0;border-radius:999px;background:#d875a0;color:white;box-shadow:0 4px 15px #0003;padding:12px 16px;font-size:16px;font-weight:bold;cursor:pointer}
+.scan-top{display:none}.scan-top.scan-open{display:block}
+
+/* compact pastel mobile edition */
+:root{color:#493b4a;background:#fff7fb}body{background:linear-gradient(160deg,#fff4fa,#f8f4ff 65%,#fffafc)}
+.app{max-width:520px;padding:7px 9px 24px}header{padding:7px 7px 4px}h1{font-size:19px;letter-spacing:.2px;color:#9e5281}header small{font-size:10px}
+section{margin:7px 0;padding:11px;border-radius:18px;border-color:#f1dce9;box-shadow:0 3px 12px #a6659110}h2{font-size:15px;margin:0 0 7px;color:#a2517f}
+label{font-size:10px;margin-bottom:3px}input,select{font-size:14px;padding:7px 8px;border-radius:10px;background:#fffafd;border-color:#ebd8e6;min-height:34px}
+button{padding:7px 5px;font-size:12px;border-radius:11px;border-color:#e9d7e3;background:#fff7fb;min-height:34px}
+button.active{background:#d96e9e;border-color:#d96e9e;color:white}.grid2{gap:6px}.toggle{gap:6px}.toggle button{font-size:12px}
+.dates{gap:4px;padding:3px 0 6px}.day{min-width:42px;max-width:65px;min-height:65px;padding:6px 1px;border-radius:12px;font-size:12px}.day strong{font-size:15px}.day .tag{font-size:9px}.day.selected{outline:2px solid #d56d9d}.day.skip{background:#ffe5b9}.day.done{background:#e2f5e8}.day.plan{background:#fce3ef}
+.options{gap:5px}.options button{font-size:13px;min-height:32px}.summary{gap:6px}.metric{padding:9px 4px;border-radius:13px;background:#fbf4fa}.metric b{font-size:21px;margin-top:2px}.metric small{font-size:10px}.pink{background:#ffe9f2}.green{background:#eaf9f1}.progress{height:7px}.note{font-size:10px;line-height:1.45;margin:6px 0}.floating-scan{top:calc(env(safe-area-inset-top, 0px) + 7px);right:9px;padding:8px 11px;font-size:12px;background:#d66c9d;box-shadow:0 2px 9px #d66c9d55}
+#editor{background:#fff5fa;border-radius:13px;padding:8px;margin-top:5px}#editor h2{font-size:13px;margin-bottom:6px}#editor label{font-size:10px}#resetInfo{margin:4px 0}footer{font-size:9px}
+@media(max-width:390px){.day{min-width:39px}.app{padding-left:7px;padding-right:7px}section{padding:9px}.floating-scan{font-size:11px}}
+
+/* v5: one-screen-first layout */
+.app{max-width:460px;padding:5px 7px 15px}header{padding:5px 7px 3px}h1{font-size:17px}header small{font-size:9px}
+section{padding:8px;margin:5px 0;border-radius:15px}h2{font-size:13px;margin-bottom:5px}
+label{font-size:10px;margin-bottom:2px}input,select{min-height:29px;padding:4px 7px;font-size:13px}
+button{min-height:29px;padding:5px 4px;font-size:11px;border-radius:9px}
+.grid2{gap:5px}.mode-line{display:flex;align-items:center;gap:8px;margin-top:6px}.mode-line label{margin:0;white-space:nowrap}.mode-line .toggle{width:190px;max-width:70%;gap:4px}.mode-line .toggle button{min-height:27px;font-size:11px}
+section .grid2[style]{margin-top:6px!important}
+.dates{gap:3px;padding:2px 0 3px}.day{min-width:40px;min-height:52px;max-width:57px;padding:4px 1px;font-size:11px;border-radius:10px}.day strong{font-size:13px}
+#editor{padding:6px;margin-top:3px}#editor h2{font-size:12px;margin-bottom:4px}.options{grid-template-columns:repeat(6,minmax(0,1fr));gap:3px}.options button{font-size:11px;min-height:29px;padding:4px 0}
+.actual-details{margin-top:5px}.actual-details summary,.summary-more summary{font-size:11px;color:#a2517f;cursor:pointer;padding:4px}.actual-details .options{margin-top:4px}
+.summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.metric{padding:6px 3px;border-radius:11px}.metric b{font-size:18px;margin-top:1px}.metric small{font-size:10px}
+.summary-more{margin-top:6px}.summary-more .summary{margin-top:4px}.note{font-size:10px;margin:3px 0}.floating-scan{top:calc(env(safe-area-inset-top, 0px) + 5px);padding:7px 9px;font-size:11px}
+#resetInfo{margin:2px 0}footer{display:none}
+@media(max-width:360px){.day{min-width:36px}.options button{font-size:10px}}
+
+/* smartphone-first scan actions */
+html,body{width:100%;max-width:100%;overflow-x:hidden} .app,section,.grid2,.grid2>div{min-width:0;max-width:100%}section{overflow-wrap:anywhere} .scan-top{overflow:hidden} .scan-top input,.scan-top select{max-width:100%;font-size:16px} .scan-top .grid2{grid-template-columns:repeat(2,minmax(0,1fr))} .scan-top .actions{display:block!important} .scan-primary,.scan-apply{display:block;width:100%;max-width:100%;border:0;border-radius:16px;padding:17px 10px;font-size:16px;font-weight:800;line-height:1.5;white-space:normal;box-shadow:0 4px 12px #df83ab33;margin:12px 0} .scan-primary{background:#e968a2;color:white} .scan-apply{background:#d63b86;color:white;border:3px solid #f7d3e4} .step-guide{font-size:13px;font-weight:700;color:#bb377b;background:#fff0f7;border-radius:12px;padding:10px;margin:8px 0 14px} .file-choice{display:block;text-align:center;border:2px dashed #df81ac;background:#fff1f8;border-radius:15px;padding:15px 8px;color:#ae3474;font-size:16px;font-weight:800;cursor:pointer} .file-input{font-size:12px;padding:5px;margin-top:6px} #ocrStatus{white-space:normal;overflow-wrap:anywhere} @media(max-width:390px){.app{padding:10px 8px 40px}section{padding:12px 10px}.scan-top .grid2{gap:7px}.scan-top label{font-size:11px}.scan-top input,.scan-top select{padding:9px 6px}}
+</style><style>.goal-modal{position:fixed;inset:0;z-index:9999;background:rgba(42,27,39,.42);display:flex;align-items:center;justify-content:center;padding:16px}.goal-modal.hidden{display:none}.goal-sheet{position:relative;background:#fff9fc;border:2px solid #f1bfd5;border-radius:24px;padding:24px 16px 18px;width:min(100%,420px);box-shadow:0 16px 60px #4b24434d}.goal-sheet h2{font-size:17px;padding-right:25px}.goal-close{position:absolute;right:12px;top:9px;border:0;background:#f8e2ed;width:34px;height:34px;border-radius:50%;font-size:22px;padding:0}.goal-sheet .options{grid-template-columns:repeat(3,1fr)}.goal-sheet .options button{font-size:15px;padding:12px 4px}.goal-sheet .options button.active{background:#d575a4;border-color:#d575a4}.goal-sheet details{margin-top:12px}.goal-sheet summary{font-size:13px;color:#81516b;cursor:pointer}
+/* smartphone-first scan actions */
+html,body{width:100%;max-width:100%;overflow-x:hidden} .app,section,.grid2,.grid2>div{min-width:0;max-width:100%}section{overflow-wrap:anywhere} .scan-top{overflow:hidden} .scan-top input,.scan-top select{max-width:100%;font-size:16px} .scan-top .grid2{grid-template-columns:repeat(2,minmax(0,1fr))} .scan-top .actions{display:block!important} .scan-primary,.scan-apply{display:block;width:100%;max-width:100%;border:0;border-radius:16px;padding:17px 10px;font-size:16px;font-weight:800;line-height:1.5;white-space:normal;box-shadow:0 4px 12px #df83ab33;margin:12px 0} .scan-primary{background:#e968a2;color:white} .scan-apply{background:#d63b86;color:white;border:3px solid #f7d3e4} .step-guide{font-size:13px;font-weight:700;color:#bb377b;background:#fff0f7;border-radius:12px;padding:10px;margin:8px 0 14px} .file-choice{display:block;text-align:center;border:2px dashed #df81ac;background:#fff1f8;border-radius:15px;padding:15px 8px;color:#ae3474;font-size:16px;font-weight:800;cursor:pointer} .file-input{font-size:12px;padding:5px;margin-top:6px} #ocrStatus{white-space:normal;overflow-wrap:anywhere} @media(max-width:390px){.app{padding:10px 8px 40px}section{padding:12px 10px}.scan-top .grid2{gap:7px}.scan-top label{font-size:11px}.scan-top input,.scan-top select{padding:9px 6px}}
+</style><style>
+/* v6: compact controls, minimal vertical scrolling */
+.app{max-width:440px;padding:4px 6px 12px}header{padding:4px 5px 2px}header h1{font-size:16px}header small{font-size:9px}
+section{padding:7px 8px;margin:4px 0;border-radius:13px}h2{font-size:12px;margin-bottom:4px}
+.grid2{gap:4px}label{font-size:9px;margin-bottom:1px}input,select{min-height:25px;height:27px;padding:2px 6px;font-size:12px;border-radius:7px}
+#rank,#cards{height:26px;min-height:26px;max-width:100%;font-size:12px}#goal,#earned,#today,#reset{height:26px;min-height:26px}
+.mode-line{margin-top:4px}.mode-line .toggle{width:145px;max-width:55%;gap:3px}.mode-line .toggle button{min-height:24px;height:24px;padding:2px 5px;font-size:10px}
+button{min-height:26px;padding:4px 5px;font-size:11px}.day{min-height:49px;min-width:37px;padding:3px 1px}.day strong{font-size:12px}
+.summary{gap:4px}.metric{padding:5px 3px}.metric b{font-size:16px}.metric small{font-size:9px}.note{font-size:9px;line-height:1.35;margin:3px 0}
+#resetInfo{font-size:9px}.floating-scan{padding:6px 8px;font-size:10px}.scan-top{max-height:80vh;overflow:auto}
+.goal-sheet{padding:17px 12px 13px}.goal-sheet .options button{font-size:13px;padding:8px 3px}
+
+/* smartphone-first scan actions */
+html,body{width:100%;max-width:100%;overflow-x:hidden} .app,section,.grid2,.grid2>div{min-width:0;max-width:100%}section{overflow-wrap:anywhere} .scan-top{overflow:hidden} .scan-top input,.scan-top select{max-width:100%;font-size:16px} .scan-top .grid2{grid-template-columns:repeat(2,minmax(0,1fr))} .scan-top .actions{display:block!important} .scan-primary,.scan-apply{display:block;width:100%;max-width:100%;border:0;border-radius:16px;padding:17px 10px;font-size:16px;font-weight:800;line-height:1.5;white-space:normal;box-shadow:0 4px 12px #df83ab33;margin:12px 0} .scan-primary{background:#e968a2;color:white} .scan-apply{background:#d63b86;color:white;border:3px solid #f7d3e4} .step-guide{font-size:13px;font-weight:700;color:#bb377b;background:#fff0f7;border-radius:12px;padding:10px;margin:8px 0 14px} .file-choice{display:block;text-align:center;border:2px dashed #df81ac;background:#fff1f8;border-radius:15px;padding:15px 8px;color:#ae3474;font-size:16px;font-weight:800;cursor:pointer} .file-input{font-size:12px;padding:5px;margin-top:6px} #ocrStatus{white-space:normal;overflow-wrap:anywhere} @media(max-width:390px){.app{padding:10px 8px 40px}section{padding:12px 10px}.scan-top .grid2{gap:7px}.scan-top label{font-size:11px}.scan-top input,.scan-top select{padding:9px 6px}}
+</style><style>.floating-scan{position:fixed!important;top:8px!important;right:8px!important;z-index:9998!important;background:#e44b91!important;color:white!important;border:2px solid white!important;box-shadow:0 3px 12px #a83d6b66!important;font-size:12px!important;font-weight:800!important;padding:10px 12px!important;min-height:40px!important;border-radius:24px!important}header{padding-right:166px!important;min-height:38px}.scan-top:not(.scan-open){display:none!important}
+/* smartphone-first scan actions */
+html,body{width:100%;max-width:100%;overflow-x:hidden} .app,section,.grid2,.grid2>div{min-width:0;max-width:100%}section{overflow-wrap:anywhere} .scan-top{overflow:hidden} .scan-top input,.scan-top select{max-width:100%;font-size:16px} .scan-top .grid2{grid-template-columns:repeat(2,minmax(0,1fr))} .scan-top .actions{display:block!important} .scan-primary,.scan-apply{display:block;width:100%;max-width:100%;border:0;border-radius:16px;padding:17px 10px;font-size:16px;font-weight:800;line-height:1.5;white-space:normal;box-shadow:0 4px 12px #df83ab33;margin:12px 0} .scan-primary{background:#e968a2;color:white} .scan-apply{background:#d63b86;color:white;border:3px solid #f7d3e4} .step-guide{font-size:13px;font-weight:700;color:#bb377b;background:#fff0f7;border-radius:12px;padding:10px;margin:8px 0 14px} .file-choice{display:block;text-align:center;border:2px dashed #df81ac;background:#fff1f8;border-radius:15px;padding:15px 8px;color:#ae3474;font-size:16px;font-weight:800;cursor:pointer} .file-input{font-size:12px;padding:5px;margin-top:6px} #ocrStatus{white-space:normal;overflow-wrap:anywhere} @media(max-width:390px){.app{padding:10px 8px 40px}section{padding:12px 10px}.scan-top .grid2{gap:7px}.scan-top label{font-size:11px}.scan-top input,.scan-top select{padding:9px 6px}}
+</style><style>
+/* Keep the scan actions visible even when a tall screenshot is displayed. */
+#shotPreview{max-height:155px!important;max-width:110px!important;display:block;object-fit:contain;margin:8px auto}
+#shotPreview.hidden{display:none!important}
+#cropWrap canvas{max-width:170px!important;max-height:100px!important;object-fit:contain}
+#cropWrap{margin:4px 0}
+.scan-top{max-height:none!important;overflow:visible!important}
+.scan-top.scan-open{padding-bottom:92px}
+#scanQuickBar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:10010;background:#fff8fc;border-top:2px solid #e9a7c6;padding:9px max(10px,env(safe-area-inset-right)) calc(9px + env(safe-area-inset-bottom));box-shadow:0 -3px 15px #a84b7840;gap:8px}
+body.scan-visible #scanQuickBar{display:none}
+#scanQuickBar button{flex:1;min-width:0;background:#e968a2;color:#fff;font-size:13px;font-weight:800;padding:13px 4px;border:0;border-radius:12px}
+#scanQuickBar button:last-child{background:#c72c7c}
+</style><style>
+.ops-extra{border:1px solid #f4c9df;border-radius:16px;background:#fffafc;padding:12px;margin:12px 0}.ops-extra h2{font-size:15px;margin:0 0 8px;color:#a43673}.ops-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.ops-tile{background:#fff;border:1px solid #f6d9e8;border-radius:12px;padding:10px;min-width:0}.ops-tile small{font-size:11px;color:#a24b7b;display:block}.ops-tile strong{font-size:20px;color:#c62d80}.ops-good{color:#138058!important}.ops-warn{color:#bb4b35!important}.ops-timeline{display:flex;gap:5px;overflow-x:auto;padding:6px 0}.ops-day{flex:0 0 58px;text-align:center;border:1px solid #f0d4e3;border-radius:10px;background:white;padding:7px 2px;font-size:11px}.ops-day b{display:block;font-size:15px;color:#c23880}.ops-help{font-size:12px;line-height:1.7;color:#79586b}.ops-hist{font-size:12px;max-height:160px;overflow:auto}.ops-hist div{padding:7px 0;border-bottom:1px solid #f5e1ec}.ops-extra button{border-radius:10px;padding:8px;border:1px solid #e6a4c5;background:#fff;color:#9b376d;font-weight:bold}.ops-extra summary{cursor:pointer;font-weight:bold;color:#a43673}.ops-extra details{margin-top:10px}
+</style><style id="yuppi-compact-v4">
+/* Preview/crop remain available to OCR but no longer occupy the screen. */
+#shotPreview,#cropWrap{display:none!important}
+.scan-top.scan-open{padding-bottom:18px!important}
+.scan-top .step-guide{display:none}
+.scan-top>.note{display:none}
+.scan-top{padding:12px!important;margin:7px 0!important}
+.scan-top h2{font-size:15px;margin-bottom:8px}
+.scan-top .file-choice{padding:10px 8px;font-size:13px}
+.scan-top .file-input{font-size:11px}
+#ocrStatus{background:#fff0f7;border-radius:12px;padding:10px;font-size:13px;font-weight:700;color:#9c326e;margin:8px 0;line-height:1.5}
+#ocrStatus:empty{display:none}
+.scan-top .scan-primary{font-size:13px;padding:9px;margin:8px 0}
+.scan-top .scan-apply{font-size:13px;padding:10px;margin:8px 0}
+.scan-manual{margin-top:9px;border:1px solid #f1c6db;border-radius:12px;padding:9px;background:#fffafd}
+.scan-manual>summary{cursor:pointer;color:#a43673;font-size:13px;font-weight:750;list-style:auto}
+.scan-manual[open]>summary{margin-bottom:12px}
+.scan-top input,.scan-top select{min-width:0}
+@media(max-width:400px){header{padding-right:135px!important}header h1{font-size:19px!important}.floating-scan{font-size:10px!important;padding:8px!important}}
+</style></head><body><button type="button" class="floating-scan" id="openScan" aria-label="Palmuのスクショを取り込む">📸 スクショを取り込む</button><div id="scanQuickBar"><button type="button" id="quickRead">🔍 再読み取り</button><button type="button" id="quickApply">💗 手入力を反映</button></div><main class="app"><header><h1>♡ YUPPI OPS <span class="heart">♡</span></h1><small>ゆっぴ専用 ♡ ランク計画手帳</small></header><section class="scan-top" id="scanPanel"><h2>📸 スクショからかんたん入力</h2><p class="step-guide">画像を選ぶだけで「あと○日」を自動反映 ♡</p><p class="note">Palmuのランク画面を選択。対応ブラウザでは文字の自動検出を試みます。中央の大きな白文字を現在ランクとして判定します。読み取りが成功すると自動反映します。反映後は内容をご確認ください。</p><label for="screenshot" class="file-choice">📸 スクショを取り込んでカレンダー更新</label><input id="screenshot" type="file" accept="image/*" class="file-input"><img id="shotPreview" class="preview hidden" alt="選択したスクリーンショット"><div id="cropWrap" class="hidden"><p class="note">ピンクのランク欄中央を拡大表示（B3などが見えることを確認）</p><canvas id="rankCrop" style="width:100%;max-width:280px;height:auto;border-radius:12px;border:2px solid #ec87b0;background:#fb1773"></canvas></div><p id="ocrStatus" class="status"></p><button type="button" id="runOCR" class="scan-primary">🔍 読み取りを再試行</button><p class="note">自動読み取りにはインターネット接続が必要です。切り抜き画像も対応。失敗時は残り日数だけ手入力できます。</p><details class="scan-manual" id="scanManual"><summary>✏️ 読み取り結果を確認・修正する</summary><div class="grid2"><div><label>中央の白文字ランク（左右は無視）</label><select id="scanRank"></select></div><div><label>画像から確認した残り日数</label><input id="scanDays" type="number" min="0" max="31" placeholder="例：1"></div><div><label>画像から確認した現在ポイント</label><input id="scanEarned" type="number" min="0" placeholder="例：0"></div><div><label>画像から確認した目標</label><input id="scanGoal" type="number" min="0" placeholder="例：18"></div></div><div class="grid2"><div><label>キープまであと +</label><input id="scanKeep" type="number" min="0" placeholder="例：9"></div><div><label>アップまであと +</label><input id="scanUp" type="number" min="0" placeholder="例：15"></div></div><label style="display:block;margin-top:7px"><input type="checkbox" id="scanSkipping" style="width:auto;height:auto"> スキップカード使用中（表示のみ記録）</label><div class="actions" style="margin-top:10px"><button id="applyScan" class="scan-apply">💗 残り日数をカレンダーに反映</button></div></details></section>
+<section><div class="grid2"><div class="field"><label>現在のランク</label><select id="rank"></select></div><div class="field"><label>スキップカード所持枚数</label><input id="cards" type="number" min="0" max="999" value="7"></div></div><div class="mode-line"><label>目標</label><div class="toggle"><button id="keep">キープ</button><button id="up">アップ</button></div></div><div class="grid2" style="margin-top:12px"><div><label>目標 +</label><input id="goal" type="number" min="0" value="18"></div><div><label>獲得済み +</label><input id="earned" type="number" min="0" value="0"></div></div></section>
+<section><h2>♡ スクショ連動・目標カレンダー</h2><p class="note" id="calendarAutoNote">📸 スクショの「あと○日」を読み取ると、今日からリセット日まで自動設定します。</p><div class="grid2"><div><label>今日</label><input id="today" type="date"></div><div><label>リセット日</label><input id="reset" type="date"></div></div><p class="note" id="resetInfo"></p><div class="dates" id="dates"></div><div id="editor" class="goal-modal hidden" role="dialog" aria-modal="true"><div class="goal-sheet"><button type="button" id="closeGoal" class="goal-close" aria-label="閉じる">×</button><h2 id="editTitle">日付を選んでね ♡</h2><label>これからの予定</label><div class="options" id="planButtons"></div><details class="actual-details"><summary>✓ 配信後の実績を入力</summary><div class="options" id="actualButtons"></div></details></div></div><p class="note">🩷予定　💚確定　🧡スキップ（リセット日+1日）／通常集計は最大7日間</p></section>
+<section class="ops-extra" id="opsDashboard"><h2>✨ YUPPI OPS スマート作戦室 ♡</h2><div class="ops-cards"><div class="ops-tile"><small>① 今日のおすすめ目標</small><strong id="opsToday">+0</strong><small id="opsTodayNote">残り日数から計算</small></div><div class="ops-tile"><small id="opsSafetyTitle">③ キープ安全ライン</small><strong id="opsSafety">確認中</strong><small id="opsSafetyNote">予定も含めて判定</small></div></div><h2 style="margin-top:12px">② 達成予測カレンダー</h2><div class="ops-timeline" id="opsTimeline"></div><p class="ops-help" id="opsForecast"></p><details><summary>④ スクショ取り込み履歴</summary><div class="ops-hist" id="opsHistory"></div><button type="button" id="opsHistoryClear">履歴を削除</button></details><details><summary>⑤ ホーム画面から起動する方法</summary><p class="ops-help">Android Chrome：このHTMLをWebサイトとしてHTTPS公開した場合、右上の「︙」→「ホーム画面に追加」から登録できます。ローカルHTMLではブラウザや端末によって追加できません。iPhone Safariでは共有→「ホーム画面に追加」。本版は単体HTMLなのでインストール可能なPWAではありません。</p></details></section><section><h2>♡ ポイントのまとめ ♡</h2><div class="summary"><div class="metric green"><small>いままでにゲット♡</small><b id="earnedView">+0</b></div><div class="metric"><small>これからゲット予定♡</small><b id="plannedView">+0</b></div><div class="metric pink"><small>目標まであと</small><b id="needView">+18</b></div><div class="metric"><small>予定どおりならあと</small><b id="afterView">+18</b></div></div><details class="summary-more"><summary>♡ 詳しい集計・カード枚数</summary><div class="summary"><div class="metric wide extra-metric"><small>合計見込み</small><b id="totalView">+0</b><div class="progress"><div id="progress"></div></div></div><div class="metric extra-metric"><small>使用予定カード</small><b id="usedView">0枚</b></div><div class="metric extra-metric"><small>使用後の残り</small><b id="remainingView">7枚</b></div></div></details><p class="note" id="message"></p></section>
+
+<details style="margin-top:7px;background:white;border:1px solid #f1dce9;border-radius:14px;padding:9px"><summary style="font-size:12px;color:#a2517f;cursor:pointer">⚙ 保存・バックアップ</summary><div style="padding-top:8px"><h2>保存・バックアップ</h2><p class="note">設定はこのブラウザ内に自動保存されます。別端末へ移す場合はバックアップを利用してください。</p><div class="actions"><button id="export">バックアップ保存</button><button id="importBtn">バックアップ読込</button><input id="importFile" class="hidden" type="file" accept="application/json,.json"></div></div></details><footer>YUPPI OPS / オフライン利用可能な試作版</footer></main>
+<script>
+(()=>{'use strict';const $=id=>document.getElementById(id),KEY='yuppi_ops_official_v1';const ranks=['D','C1','C2','C3','B1','B2','B3','A1','A2','A3','A4','A5','S','SS'];const iso=d=>{let x=new Date(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')};const date=s=>new Date(s+'T12:00:00');const add=(s,n)=>{let d=date(s);d.setDate(d.getDate()+n);return iso(d)};const diff=(a,b)=>Math.round((date(b)-date(a))/86400000);const fmt=s=>{let d=date(s);return (d.getMonth()+1)+'月'+d.getDate()+'日'};const num=v=>Math.max(0,Number(v)||0);const plus=n=>'+'+Math.max(0,n);let now=iso(new Date());let state={rank:'D',cards:7,mode:'up',goal:18,earned:0,today:now,reset:add(now,6),days:{},scanKeep:null,scanUp:null,scanSkipping:false};try{let saved=JSON.parse(localStorage.getItem(KEY));if(saved&&typeof saved==='object')state={...state,...saved,days:saved.days||{}}}catch(e){};let selected=state.today;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}function get(k){return state.days[k]||{plan:'',actual:null}}function skips(){return Object.entries(state.days).filter(([d,v])=>d>=state.today&&v.plan==='skip').map(([d])=>d)}function end(){let base=state.reset,limit=60;for(let i=0;i<limit;i++){let count=skips().filter(d=>d<=add(base,i)).length;if(count===i)return add(base,i)}return add(base,Math.min(skips().length,60))}function days(){let n=Math.max(0,Math.min(60,diff(state.today,end())));return Array.from({length:n+1},(_,i)=>add(state.today,i))}
+function update(){for(const k of ['rank','cards','goal','earned','today','reset'])$(k).value=state[k];$('keep').classList.toggle('active',state.mode==='keep');$('up').classList.toggle('active',state.mode==='up');let ds=days(),final=end();if(!ds.includes(selected))selected=ds[0];$('calendarAutoNote').textContent='📸 スクショの「あと'+diff(state.today,state.reset)+'日」→ 今日を含めて'+ds.length+'日間を表示（スキップ延長を含む）';$('resetInfo').textContent='判定：+0〜+11 ダウン / +12〜+17 キープ / +18以上 アップ ♡  リセット日：'+fmt(final)+(final!==state.reset?'（スキップで '+diff(state.reset,final)+'日延長）':'')+' ／ カレンダー：'+ds.length+'日間（今日〜リセット日）';$('dates').innerHTML='';ds.forEach(d=>{let v=get(d),b=document.createElement('button');b.className='day'+(selected===d?' selected':'')+(v.plan==='skip'?' skip':v.actual!==null?' done':v.plan?' plan':'');let day=date(d);b.innerHTML='<span>'+ (day.getMonth()+1)+'/'+day.getDate()+'</span><strong>'+(v.plan==='skip'?'休':v.actual!==null?plus(num(v.actual)):v.plan?plus(num(v.plan)):'—')+'</strong><span class="tag">'+(d===state.today?'今日':d===final?'リセット':v.actual!==null?'確定':v.plan==='skip'?'スキップ':v.plan?'予定':'未定')+'</span>';b.onclick=()=>{selected=d;update();$('editor').classList.remove('hidden')};$('dates').append(b)});$('editTitle').textContent=fmt(selected)+'の目標を選んでね ♡';let v=get(selected);$('planButtons').innerHTML='';[['スキップ','skip'],['+1','1'],['+2','2'],['+4','4'],['+6','6'],['未定','']].forEach(([t,val])=>{let b=document.createElement('button');b.textContent=t;b.className=v.plan===val?'active':'';b.onclick=()=>{if(val==='skip'&&v.plan!=='skip'&&skips().length>=state.cards){alert('スキップカードが足りません');return}state.days[selected]={...v,plan:val,actual:val==='skip'?null:v.actual};save();update();$('editor').classList.add('hidden')};$('planButtons').append(b)});$('actualButtons').innerHTML='';[['未確定',null],['+0',0],['+1',1],['+2',2],['+4',4],['+6',6]].forEach(([t,val])=>{let b=document.createElement('button');b.textContent=t;b.className=v.actual===val?'active':'';b.onclick=()=>{state.days[selected]={...get(selected),actual:val,plan:val!==null&&get(selected).plan==='skip'?'':get(selected).plan};save();update();$('editor').classList.add('hidden')};$('actualButtons').append(b)});let actualDays=ds.reduce((s,d)=>s+(get(d).actual===null?0:num(get(d).actual)),0),planned=ds.reduce((s,d)=>{let v=get(d);return s+(v.actual!==null||v.plan==='skip'?0:num(v.plan))},0),earned=num(state.earned)+actualDays,need=Math.max(0,num(state.goal)-earned),after=Math.max(0,need-planned),used=skips().filter(d=>d<=final).length;for(let [id,val] of Object.entries({earnedView:plus(earned),plannedView:plus(planned),needView:plus(need),afterView:plus(after),totalView:plus(earned+planned),usedView:used+'枚',remainingView:Math.max(0,num(state.cards)-used)+'枚'}))$(id).textContent=val;$('progress').style.width=(num(state.goal)?Math.min(100,(earned+planned)/num(state.goal)*100):100)+'%';let running=num(state.earned),hit='';for(const d of ds){let v=get(d);if(v.plan!=='skip')running+=v.actual!==null?num(v.actual):num(v.plan);if(!hit&&running>=18)hit=d}let baseMessage=after===0?'予定どおりなら目標達成 ♡':'予定どおりでも、あと '+plus(after)+' 必要だよ ♡';$('message').textContent=baseMessage+(hit?' ／ '+fmt(hit)+'に+18達成見込み → 翌日から次ランク集計':'');renderOps(ds,earned,planned);}
+for(let id of ['rank','scanRank']){ranks.forEach(r=>{let o=document.createElement('option');o.value=r;o.textContent=r;$(id).append(o)})}for(let k of ['rank','cards','goal','earned','today','reset'])$(k).addEventListener('change',()=>{state[k]=['cards','goal','earned'].includes(k)?num($(k).value):$(k).value;if(k==='today'&&state.reset<state.today)state.reset=state.today;save();update()});for(let mode of ['keep','up'])$(mode).onclick=()=>{state.mode=mode;state.goal=mode==='keep'?12:18;save();update()};$('scanRank').insertAdjacentHTML('afterbegin','<option value= selected>読み取り待ち・選択</option>');$('scanRank').value='';
+$('openScan').onclick=()=>{let panel=$('scanPanel');panel.classList.add('scan-open');document.body.classList.add('scan-visible');panel.scrollIntoView({behavior:'smooth',block:'start'});$('screenshot').click();};let scanFile=null;
+$('closeGoal').onclick=()=>$('editor').classList.add('hidden');$('editor').onclick=e=>{if(e.target===$('editor'))$('editor').classList.add('hidden')};$('screenshot').onchange=e=>{state.today=iso(new Date());scanFile=e.target.files[0];if(!scanFile)return;$('shotPreview').src=URL.createObjectURL(scanFile);$('shotPreview').classList.remove('hidden');showRankCrop(scanFile).catch(()=>{});$('scanGoal').value='';$('scanKeep').value='';$('scanUp').value='';$('scanDays').value='';$('scanEarned').value='';$('ocrStatus').textContent='画像を読み取っています…';$('runOCR').click();};
+
+// ランクパネルの背景色はマゼンタ（青成分が高い）。旧版の b<190 は誤り。
+async function findPinkPanel(file){
+ const bm=await createImageBitmap(file),w=bm.width,h=bm.height;
+ const cv=document.createElement('canvas');cv.width=w;cv.height=h;
+ const ctx=cv.getContext('2d',{willReadFrequently:true});ctx.drawImage(bm,0,0);bm.close?.();
+ const px=ctx.getImageData(0,0,w,h).data,stepY=Math.max(2,Math.round(h/700)),stepX=Math.max(2,Math.round(w/130));
+ const matches=[];
+ for(let y=Math.round(h*.07);y<Math.round(h*.76);y+=stepY){let yes=0,total=0;
+  for(let x=Math.round(w*.10);x<Math.round(w*.90);x+=stepX){const i=(y*w+x)*4,r=px[i],g=px[i+1],b=px[i+2];total++;
+   if(r>170&&b>150&&g<185&&r>g*1.35&&b>g*1.35)yes++}
+  if(yes/total>.56)matches.push(y);
+ }
+ // 一番上の連続した広いピンク帯を使う。プロフィール画像の赤い装飾を除外。
+ let groups=[];for(const y of matches){let last=groups[groups.length-1];if(!last||y-last.end>stepY*2)groups.push({start:y,end:y});else last.end=y}
+ const minLength=Math.max(20,w*.065);
+ const panel=groups.find(g=>g.end-g.start>=minLength&&g.start>h*.09);
+ return {cv,w,h,top:panel?panel.start:Math.round(h*.24),found:!!panel};
+}
+function panelCrop(p,x,y,rw,rh,scale=3){
+ const {cv,w,h,top}=p,sx=Math.max(0,Math.round(x*w)),sy=Math.max(0,Math.round(top+y*w));
+ const sw=Math.min(w-sx,Math.max(1,Math.round(rw*w))),sh=Math.min(h-sy,Math.max(1,Math.round(rh*w)));
+ const out=document.createElement('canvas');out.width=sw*scale;out.height=sh*scale;
+ const c=out.getContext('2d');c.fillStyle='#fff';c.fillRect(0,0,out.width,out.height);
+ c.drawImage(cv,sx,sy,sw,sh,0,0,out.width,out.height);return out;
+}
+async function showRankCrop(file){
+ const p=await findPinkPanel(file),crop=$('rankCrop');
+ const region=panelCrop(p,.38,.045,.24,.16,3);crop.width=region.width;crop.height=region.height;
+ crop.getContext('2d').drawImage(region,0,0);$('cropWrap').classList.remove('hidden');return crop;
+}
+async function makeRegions(file){
+ const p=await findPinkPanel(file);
+ return {rank:panelCrop(p,.38,.045,.24,.16),points:panelCrop(p,.34,.13,.32,.095),
+  days:panelCrop(p,.25,.225,.50,.095),keep:panelCrop(p,.08,.32,.42,.14),
+  up:panelCrop(p,.50,.32,.42,.14),full:p.cv};
+}
+// 「あと4日でリセット」だけの切り抜き画像にも対応。
+async function resetBand(file){
+ const bitmap=await createImageBitmap(file),w=bitmap.width,h=bitmap.height;
+ const original=document.createElement('canvas');original.width=w;original.height=h;
+ const ctx=original.getContext('2d',{willReadFrequently:true});ctx.drawImage(bitmap,0,0);bitmap.close?.();
+ const pixels=ctx.getImageData(0,0,w,h).data, rows=[];
+ for(let y=0;y<h;y+=Math.max(1,Math.floor(h/600))){let n=0,all=0;
+   for(let x=Math.floor(w*.08);x<w*.92;x+=Math.max(1,Math.floor(w/120))){const i=(y*w+x)*4,r=pixels[i],g=pixels[i+1],b=pixels[i+2];all++;if(r>175&&r>g*1.5&&r>b*1.15&&g<175)n++}
+   if(n/all>.42)rows.push(y);
+ }
+ let y0=rows.length?Math.max(0,Math.min(...rows)-Math.round(h*.03)):Math.round(h*.25);
+ let y1=rows.length?Math.min(h,Math.max(...rows)+Math.round(h*.04)):Math.round(h*.80);
+ if(y1-y0<30){y0=0;y1=h}
+ const out=document.createElement('canvas');out.width=Math.max(400,w*2);out.height=Math.max(80,(y1-y0)*2);
+ const c=out.getContext('2d');c.fillStyle='#fff';c.fillRect(0,0,out.width,out.height);
+ c.drawImage(original,0,y0,w,y1-y0,0,0,out.width,out.height);
+ return {band:out,full:original};
+}
+function extractResetDays(t){
+ const cleaned=String(t).normalize('NFKC').replace(/\s/g,'');
+ const m=cleaned.match(/(?:あと|残り)?([0-9]{1,2})日(?:で)?(?:リセット)?/);
+ return m?Number(m[1]):null;
+}
+$('runOCR').onclick=async()=>{
+ if(!scanFile){$('ocrStatus').textContent='先に画像を選んでください';return}
+ const status=$('ocrStatus');$('runOCR').disabled=true;
+ status.textContent='ピンクのランク欄を優先して読み取っています…';
+ try{
+  if(!window.Tesseract){await new Promise((resolve,reject)=>{const sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';sc.onload=resolve;sc.onerror=()=>reject(Error('OCRの読み込みに失敗しました'));document.head.append(sc)})}
+  const parts=await makeRegions(scanFile),reset=await resetBand(scanFile);
+  const recognize=async(canvas,lang='eng')=>(await Tesseract.recognize(canvas,lang)).data.text;
+  const clean=t=>String(t).toUpperCase().replace(/[|!]/g,'1').replace(/\s+/g,'').trim();
+  let rank=null,earned=null,remaining=null;
+  // 現在ランクはピンク帯の中央だけを見る。左右の前後ランクは使わない。
+  const rankCrops=[parts.rank,await showRankCrop(scanFile)];
+  for(const canvas of rankCrops){
+   for(const variant of [0,1]){
+    const test=document.createElement('canvas');test.width=canvas.width;test.height=canvas.height;
+    const c=test.getContext('2d',{willReadFrequently:true});c.drawImage(canvas,0,0);
+    if(variant){const img=c.getImageData(0,0,test.width,test.height);for(let i=0;i<img.data.length;i+=4){const r=img.data[i],g=img.data[i+1],b=img.data[i+2];const white=r>175&&g>155&&b>150&&Math.max(r,g,b)-Math.min(r,g,b)<95;img.data[i]=img.data[i+1]=img.data[i+2]=white?0:255}c.putImageData(img,0,0)}
+    const raw=clean(await recognize(test));
+    const m=raw.match(/^(SS|A[1-5]|B[1-3]|C[1-3]|S|D)$/)||raw.match(/(?:^|[^A-Z0-9])(SS|A[1-5]|B[1-3]|C[1-3]|S|D)(?=$|[^A-Z0-9])/);
+    if(m){rank=m[1];break}
+   }
+   if(rank)break;
+  }
+  if(rank){$('scanRank').value=rank;state.rank=rank}
+  status.textContent='ランク欄を確認しました。ポイントとリセット日数を読み取っています…';
+  // 獲得ポイントはランク直下の「4 / 18」だけを優先。
+  try{for(const canvas of [parts.points,parts.full]){const t=clean(await recognize(canvas));const m=t.match(/(?:^|[^0-9])([0-9]{1,2})\/18(?:[^0-9]|$)/);if(m&&Number(m[1])<=18){earned=Number(m[1]);break}}}catch(e){}
+  if(earned!==null){$('scanEarned').value=earned;$('scanGoal').value=18;$('scanKeep').value=Math.max(0,12-earned);$('scanUp').value=Math.max(0,18-earned);state.earned=earned;state.goal=18;state.mode='up'}
+  // 日数は専用のピンク帯を読む。数字だけを拾って誤反映しない。
+  try{for(const canvas of [parts.days,reset.band,reset.full]){const t=await recognize(canvas,'jpn+eng');const n=extractResetDays(t);if(n!==null&&n<=31){remaining=n;break}}}catch(e){}
+  if(remaining!==null){$('scanDays').value=remaining;state.today=iso(new Date());state.reset=add(state.today,remaining)}
+  if(rank||earned!==null||remaining!==null){save();update();recordScan()}
+  const items=[rank?'ランク '+rank:null,earned!==null?'獲得 +'+earned:null,remaining!==null?'リセットまで '+remaining+'日':null].filter(Boolean);
+  status.textContent=items.length?'✓ '+items.join(' ／ ')+(remaining===null?' ／ 日数は要確認':''):'読み取りに失敗しました。修正欄から入力してください。';if(remaining===null||!rank||earned===null){$('scanManual').open=true;}else{$('scanManual').open=false;}
+ }catch(e){status.textContent='読み取りエラー：'+(e.message||e)+'。下の欄で手動入力できます。'}finally{$('runOCR').disabled=false}
+};
+$('applyScan').onclick=()=>{
+ if($('scanDays').value===''){$('ocrStatus').textContent='残り日数を入力してください';return}
+ state.today=iso(new Date());state.reset=add(state.today,num($('scanDays').value));
+ if($('scanRank').value)state.rank=$('scanRank').value;
+ if($('scanEarned').value!=='')state.earned=num($('scanEarned').value);
+ if($('scanGoal').value!==''){state.goal=num($('scanGoal').value);state.mode=state.goal===12?'keep':'up'}
+ state.scanKeep=$('scanKeep').value===''?null:num($('scanKeep').value);
+ state.scanUp=$('scanUp').value===''?null:num($('scanUp').value);
+ state.scanSkipping=$('scanSkipping').checked;save();update();
+ $('ocrStatus').textContent='✓ 反映しました。今日を含め'+days().length+'日間のカレンダーです。';
+ $('scanPanel').classList.remove('scan-open');document.body.classList.remove('scan-visible');
+ $('dates').scrollIntoView({behavior:'smooth',block:'center'});
+};
+$('quickRead').onclick=()=>$('runOCR').click();$('quickApply').onclick=()=>$('applyScan').click();$('export').onclick=()=>{let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='YUPPI_OPS_backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};$('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=async e=>{try{let v=JSON.parse(await e.target.files[0].text());if(!v.days||!v.today||!v.reset)throw Error('形式が違います');state={...state,...v};save();update();alert('読み込みました')}catch(err){alert('読み込めませんでした：'+err.message)}};
+function opsHistory(){try{return JSON.parse(localStorage.getItem('yuppi_ops_scan_history_v2')||'[]')}catch(e){return []}}
+function recordScan(){try{let a=opsHistory();let entry={time:new Date().toLocaleString('ja-JP'),rank:state.rank,earned:state.earned,goal:state.goal,remaining:Math.max(0,diff(state.today,state.reset))};if(a[0]&&a[0].rank===entry.rank&&a[0].earned===entry.earned&&a[0].remaining===entry.remaining&&a[0].time===entry.time)return;a.unshift(entry);localStorage.setItem('yuppi_ops_scan_history_v2',JSON.stringify(a.slice(0,50)));renderOps(days(),num(state.earned),0)}catch(e){}}
+function renderOps(ds,earned,planned){let remaining=Math.max(0,18-earned-planned),keepRemaining=Math.max(0,12-earned-planned);let available=ds.filter(d=>{let v=get(d);return v.plan!=='skip'&&v.actual===null&&d>=state.today});let todayTarget=available.length?Math.ceil(Math.max(0,num(state.goal)-earned-planned)/available.length):0;$('opsToday').textContent=plus(todayTarget);$('opsTodayNote').textContent='未設定の'+available.length+'日で不足分を均等配分';let isUp=state.mode==='up',threshold=isUp?18:12,shortfall=isUp?remaining:keepRemaining,safe=shortfall===0,modeName=isUp?'アップ':'キープ';$('opsSafetyTitle').textContent='③ '+modeName+'安全ライン';$('opsSafety').textContent=safe?modeName+'圏内 ♡':'あと '+plus(shortfall);$('opsSafety').className=safe?'ops-good':'ops-warn';$('opsSafetyNote').textContent='獲得済み＋予定で+'+threshold+(safe?'以上':'未満');let running=num(state.earned),hit12='',hit18='';let html='';for(let d of ds){let v=get(d),n=v.actual!==null?num(v.actual):v.plan==='skip'?0:num(v.plan);running+=n;if(!hit12&&running>=12)hit12=d;if(!hit18&&running>=18)hit18=d;html+='<div class="ops-day"><span>'+fmt(d)+'</span><b>'+(v.plan==='skip'?'休':plus(n))+'</b><span>累計 '+plus(running)+'</span></div>'}$('opsTimeline').innerHTML=html;$('opsForecast').textContent='キープ+12：'+(hit12?fmt(hit12)+'達成見込み':'未達見込み')+' ／ アップ+18：'+(hit18?fmt(hit18)+'達成見込み（翌日から次ランク）':'未達見込み')+'。未定日は+0として計算。';let a=opsHistory();$('opsHistory').innerHTML=a.length?a.map(x=>'<div>'+x.time+'　'+x.rank+'　獲得 '+plus(num(x.earned))+'　残り'+x.remaining+'日</div>').join(''):'まだ履歴はありません。';}
+$('opsHistoryClear').onclick=()=>{if(confirm('スクショ履歴を削除しますか？')){localStorage.removeItem('yuppi_ops_scan_history_v2');update()}};
+// OCR本体は既存の正常動作版から変更せず、読み取り完了時だけ履歴を追加する。
+$('screenshot').addEventListener('change',()=>{setTimeout(()=>{let start=state.rank+'|'+state.earned+'|'+state.reset;let count=0;let timer=setInterval(()=>{count++;if(state.rank+'|'+state.earned+'|'+state.reset!==start){recordScan();clearInterval(timer)}if(count>=45)clearInterval(timer)},1000)},0)});
+$('applyScan').addEventListener('click',()=>setTimeout(recordScan,50));
+update()})();
+</script><script>if("serviceWorker" in navigator && location.protocol==="https:"){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));}</script></body></html>
